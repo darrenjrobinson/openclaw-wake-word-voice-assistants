@@ -7,7 +7,8 @@ Upstream: https://github.com/esphome/wake-word-voice-assistants
 This fork starts with the ESP32-S3-Box-3 Home Assistant voice assistant image flashed via ESP Web Tools, then layers an OpenClaw/Marvin customisation path on top:
 
 - custom display assets for assistant states
-- a safe place for custom microWakeWord model files
+- pinned Marvin/Hey Marvin microWakeWord model references
+- a safe place for future custom microWakeWord model files
 - documentation for personalising the wake word and screen identity
 - ESPHome YAML suitable for dashboard import and later factory builds
 

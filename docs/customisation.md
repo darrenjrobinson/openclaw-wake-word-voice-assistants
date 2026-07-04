@@ -29,13 +29,15 @@ To personalise the assistant, replace the PNG files in `openclaw-assets/` with 3
 
 ## Wake words
 
-The starter YAML keeps the known-good built-in models:
+The OpenClaw variant includes the known-good built-in models plus pinned Marvin models from TaterTotterson's public microWakeWords V3 set:
 
 ```yaml
 micro_wake_word:
   id: mww
   task_stack_in_psram: true
   models:
+    - model: https://raw.githubusercontent.com/TaterTotterson/microWakeWords/e2e4f5ad41b7c944016d95350fc9d6fa17f3fa8f/microWakeWordsV3/marvin.json
+    - model: https://raw.githubusercontent.com/TaterTotterson/microWakeWords/e2e4f5ad41b7c944016d95350fc9d6fa17f3fa8f/microWakeWordsV3/hey_marvin.json
     - model: okay_nabu
       sliding_window_size: 3
       probability_cutoff: 97%
@@ -43,13 +45,13 @@ micro_wake_word:
     - hey_jarvis
 ```
 
-For a custom wake word, train a microWakeWord model, place the JSON/TFLite files under `wake-word-models/`, and add a model reference:
+After rebuilding/flashing, Home Assistant should expose `Marvin` and `Hey Marvin` in the device's Wake word selector. Start with `Hey Marvin` if the one-word model false-triggers in the room. Reality has a sense of humour and it expresses itself through false accepts.
+
+For future custom wake words, train a microWakeWord model, place the JSON/TFLite files under `wake-word-models/`, and add a model reference:
 
 ```yaml
-    - model: github://darrenjrobinson/openclaw-wake-word-voice-assistants/wake-word-models/marvin.json@main
+    - model: github://darrenjrobinson/openclaw-wake-word-voice-assistants/wake-word-models/example.json@main
 ```
-
-Keep `hey_jarvis` available until the custom phrase has been tested in the target room. Reality has a sense of humour and it expresses itself through false rejects.
 
 ## Wake-word restart latency
 

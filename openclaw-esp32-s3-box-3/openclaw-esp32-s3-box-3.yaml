@@ -227,13 +227,15 @@ micro_wake_word:
   id: mww
   task_stack_in_psram: true
   models:
+    - model: https://raw.githubusercontent.com/TaterTotterson/microWakeWords/e2e4f5ad41b7c944016d95350fc9d6fa17f3fa8f/microWakeWordsV3/marvin.json
+    - model: https://raw.githubusercontent.com/TaterTotterson/microWakeWords/e2e4f5ad41b7c944016d95350fc9d6fa17f3fa8f/microWakeWordsV3/hey_marvin.json
     - model: okay_nabu
       sliding_window_size: 3
       probability_cutoff: 97%
     - hey_mycroft
     - hey_jarvis
-    # Custom wake word path: replace/add a model JSON URL here, for example:
-    # - model: github://<owner>/<repo>/wake-word-models/marvin.json@main
+    # Marvin wake-word models are from TaterTotterson/microWakeWords V3.
+    # If these prove too sensitive in the room, prefer hey_marvin over marvin.
   on_wake_word_detected:
     - voice_assistant.start:
         wake_word: !lambda return wake_word;
