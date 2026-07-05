@@ -227,15 +227,17 @@ micro_wake_word:
   id: mww
   task_stack_in_psram: true
   models:
-    - model: https://raw.githubusercontent.com/TaterTotterson/microWakeWords/e2e4f5ad41b7c944016d95350fc9d6fa17f3fa8f/microWakeWordsV3/marvin.json
+    # yo_marvin: primary wake word — added 2026-07-05 from Tater issue #704
+    - model: https://raw.githubusercontent.com/TaterTotterson/microWakeWords/0b08afc85fde35393603c84b8fb050178ad97383/microWakeWordsV3/yo_marvin.json
     - model: https://raw.githubusercontent.com/TaterTotterson/microWakeWords/e2e4f5ad41b7c944016d95350fc9d6fa17f3fa8f/microWakeWordsV3/hey_marvin.json
+    - model: https://raw.githubusercontent.com/TaterTotterson/microWakeWords/e2e4f5ad41b7c944016d95350fc9d6fa17f3fa8f/microWakeWordsV3/marvin.json
     - model: okay_nabu
       sliding_window_size: 3
       probability_cutoff: 97%
     - hey_mycroft
     - hey_jarvis
-    # Marvin wake-word models are from TaterTotterson/microWakeWords V3.
-    # If these prove too sensitive in the room, prefer hey_marvin over marvin.
+    # Wake-word models are from TaterTotterson/microWakeWords V3, pinned by commit SHA.
+    # Priority order: yo_marvin > hey_marvin > marvin > okay_nabu > hey_mycroft > hey_jarvis
   on_wake_word_detected:
     - voice_assistant.start:
         wake_word: !lambda return wake_word;
